@@ -1,9 +1,9 @@
 FROM golang:1.15-alpine AS build
 RUN apk update && apk add git
-COPY main.go go.* /go
-RUN go get git
 RUN go get -u github.com/firstrow/tcp_server
 RUN go get -u github.com/mackerelio/go-osstat/cpu
+WORKDIR /src
+COPY main.go go.* /src/
 RUN CGO_ENABLED=0 go build -o /bin/haproxyHC
 
 
