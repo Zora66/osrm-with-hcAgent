@@ -1,7 +1,6 @@
 FROM golang:1.15-alpine AS build
-
+RUN apk update && apk add git
 COPY main.go go.* /go
-RUN export GOROOT=/usr/local/go
 RUN go get git
 RUN go get -u github.com/firstrow/tcp_server
 RUN go get -u github.com/mackerelio/go-osstat/cpu
