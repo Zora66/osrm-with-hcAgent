@@ -24,8 +24,10 @@ func main() {
 		if cpuIdle < 10 {
 			// Set server weight to half
 			c.Send("50%\n")
+			fmt.Println("Send 50%")
 		} else {
 			c.Send("100%\n")
+			fmt.Println("Send 100%")
 		}
 
 		c.Close()
@@ -46,5 +48,7 @@ func getIdleTime() (float64, error) {
 	}
 	total := float64(after.Total - before.Total)
 	cpuIdle := float64(after.Idle-before.Idle) / total * 100
+	fmt.Println("CPU: ")
+	fmt.Println(cpuIdle)
 	return cpuIdle, nil
 }
